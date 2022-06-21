@@ -1,0 +1,89 @@
+<form class="{{cssClass}} {{actor.type}}" autocomplete="off">
+  <div class="sheet-top">
+    <div class="resources grid grid-2col">
+        <div class="post-it">
+          <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
+        </div>
+        <div class="resource flex-group-center flexrow">
+          <div class="flexcol">
+            <h1><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+            <div class="aspects">
+              {{#each data.aspects as |aspect key|}}
+              <div class="flex-group-center flexrow">
+                <label for="data.aspects.{{key}}.value" class="resource-label flexlarge align-left"
+                  data-label="{{aspect.label}}">{{aspect.label}}</label>
+                <select name="data.aspects.{{key}}.value" id="data.aspects.{{key}}.value">
+                  {{selectOptions ../cfg.dieTypes selected=aspect.value localize=true}}
+                </select>
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.one" {{checked aspect.one}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.two" {{checked aspect.two}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.three" {{checked aspect.three}} />
+                <input class="stressbox stressbox-crit" type="checkbox" name="data.aspects.{{key}}.four" {{checked aspect.four}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.five" {{checked aspect.five}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.six" {{checked aspect.six}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.seven" {{checked aspect.seven}} />
+                <input class="stressbox stressbox-crit" type="checkbox" name="data.aspects.{{key}}.eight" {{checked aspect.eight}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.nine" {{checked aspect.nine}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.ten" {{checked aspect.ten}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.eleven" {{checked aspect.eleven}} />
+                <input class="stressbox stressbox-crit" type="checkbox" name="data.aspects.{{key}}.twelve" {{checked aspect.twelve}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.thirteen" {{checked aspect.thirteen}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.fourteen" {{checked aspect.fourteen}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.fifteen" {{checked aspect.fifteen}} />
+                <input class="stressbox stressbox-crit" type="checkbox" name="data.aspects.{{key}}.sixteen" {{checked aspect.sixteen}} />
+              </div>
+              {{/each}}
+            </div>
+            <div class="resource flex-group-center">
+              <div class="resource-content flexcol">
+                <br />
+                <label for="data.xpTokens" class="resource-label">Experience Tokens</label>
+                <div>
+                  <input type="checkbox" name="data.xpTokens.first" {{checked data.xpTokens.first}} />
+                  <input type="checkbox" name="data.xpTokens.second" {{checked data.xpTokens.second}} />
+                  <input type="checkbox" name="data.xpTokens.third" {{checked data.xpTokens.third}} />
+                  <input type="checkbox" name="data.xpTokens.fourth" {{checked data.xpTokens.fourth}} />
+                  <input type="checkbox" name="data.xpTokens.fifth" {{checked data.xpTokens.fifth}} />
+                  <input type="checkbox" name="data.xpTokens.sixth" {{checked data.xpTokens.sixth}} />
+                  <input type="checkbox" name="data.xpTokens.seventh" {{checked data.xpTokens.seventh}} />
+                  <input type="checkbox" name="data.xpTokens.eighth" {{checked data.xpTokens.eighth}} />
+                  <input type="checkbox" name="data.xpTokens.ninth" {{checked data.xpTokens.ninth}} />
+                  <input type="checkbox" name="data.xpTokens.tenth" {{checked data.xpTokens.tenth}} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="namelabel">{{actor.name}}</div>
+  </div>
+  <div class="sheet-mid">
+    <div class="resources grid grid-2col">
+      <div class="resource flex-group-center" style="width: 90%;">
+            Biography
+            <textarea name="data.biography" rows="15">{{data.biography}}</textarea>
+      </div>
+      <div class="resource flex-group-center" style="width: 90%;">
+        {{!-- Sheet Tab Navigation --}}
+        <nav class="sheet-tabs tabs" data-group="primary">
+          {{!-- Default tab is specified in actor-sheet.mjs --}}
+          <a class="item" data-tab="skills">Skills</a>
+          <a class="item" data-tab="items">Equipment</a>
+        </nav>
+        <section class="sheet-body">
+          {{!-- Owned Features Tab --}}
+          <div class="tab skills" data-group="primary" data-tab="skills">
+            {{!-- For the main skills list, span the right two columns --}}
+            {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
+            {{> "systems/thewatch/templates/actor/parts/actor-skills.html"}}
+          </div>
+          {{!-- Owned Items Tab --}}
+          <div class="tab items" data-group="primary" data-tab="items">
+            {{> "systems/thewatch/templates/actor/parts/actor-items.html"}}
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div class="sheet-bottom"></div>
+</form>
